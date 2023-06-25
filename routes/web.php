@@ -28,8 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/timeline',function () {
-    return view('timeline');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/timeline', 'App\Http\Controllers\PostController@index');
+    Route::post('/post',  'App\Http\Controllers\PostController@store');
 });
 
 require __DIR__.'/auth.php';
