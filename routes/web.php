@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/timeline', 'App\Http\Controllers\PostController@index');
     Route::post('/post',  'App\Http\Controllers\PostController@store');
+    Route::delete('/post/{id}', 'App\Http\Controllers\PostController@destroy');
+    Route::put('/post/{id}', 'App\Http\Controllers\PostController@update');
 });
 
 require __DIR__.'/auth.php';

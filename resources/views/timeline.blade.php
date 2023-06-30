@@ -29,7 +29,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">投稿フォーム</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="/post" method="post">
@@ -39,12 +39,35 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">投稿する</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        @foreach($posts as $post)
+        <div class="modal fade" id="editModal{{ $post->id }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">編集フォーム</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/post/{{ $post->id }}" method="post">
+                        <input type="hidden" name="_method" value="PUT"/>
+                        @csrf
+                        <div class="modal-body">
+                            <textarea name="content" rows="4" cols="40">{{$post->content}}</textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">更新する</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
         @foreach($posts as $post)
         <div class="card mt-2">
             <div class="card-body">
@@ -56,6 +79,20 @@
                     <div class="col d-flex justify-content-end">
                         <span class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</span>
                     </div>
+                    @if($post->user_id == $id)
+                    <div class="col d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $post->id }}">
+                        編集
+                        </button>
+                        <form action="/post/{{ $post->id }}" method="post">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE"/>
+                            <button type="submit" class="btn btn-danger">
+                            削除
+                            </button>
+                        </from>
+                    </div>
+                    @endif
                 </div>
                 <p class="card-text">{{ $post->content }}</p>
             </div>

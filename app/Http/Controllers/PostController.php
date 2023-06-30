@@ -22,7 +22,8 @@ class PostController extends Controller
             // print_r(json_encode($post));
             $post->user_name = $user->name;
         }
-        return view('timeline', compact('posts'));
+        $id = Auth::id();
+        return view('timeline', compact('posts', 'id'));
     }
 
     public function store(Request $request) {
@@ -34,5 +35,18 @@ class PostController extends Controller
         return redirect('/timeline');
     }
 
-    
+    public function destroy($id) {
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect('/timeline');
+    }
+
+    public function update(Request $request, $id) {
+        $post = Post::findOrFail($id);
+        $post->content =$request->content;
+        $post->save();
+
+        return redirect('/timeline');
+    }
 }
