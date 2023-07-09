@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         if ($request->query('content')) {
-            $posts = Post::where('content', '=', $request->query('content'))->get();
+            $posts = Post::where('content', 'like', '%' .$request->query('content'). '%')->get();
         } else {
             $posts = Post::all();
         } 
