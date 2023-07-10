@@ -6,7 +6,7 @@
     <title>Buzz Hub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"></head>
 <body>
-    <div class="container">
+    <div class="container" style="max-width:600px;">
         <div class="row">
             <div class="col">
             </div>
@@ -116,17 +116,34 @@
         $(function() {
         var API_KEY = 'd0691dd85a9130f26b631da51d0ec9bd';
         var city = 'Tokyo';
-        var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + ',jp&units=metric&APPID=' + API_KEY;
+        var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',jp&units=metric&APPID=' + API_KEY;
         $.ajax({
             url: url,
             dataType: "json",
             type: 'GET',
         })
         .done(function(data) {
+            // const weatherId = data.weather[0].id;
+            const weatherId = 200
+            if (weatherId >= 200 && weatherId <= 232) {
+                $('.container').css('background-image', 'url(/image/thunder.png)')
+            } else if (weatherId >= 300 && weatherId <= 531) {
+                $('body').css('background-image', 'url(/image/rain.png)')
+            } else if (weatherId >= 600 && weatherId <= 622) {
+                $('body').css('background-image', 'url(/image/snow.png)')
+            } else if (weatherId == 800) {
+                $('body').css('background-image', 'url(/image/sunny.png)')
+            } else if (weatherId >= 801 && weatherId <= 804) {
+                $('body').css('background-image', 'url(/image/cloud.png)')
+            } else {
+
+            }
+            // console.log(data);
         })
         .fail(function(data) {
         });
         });
-    </script>
+
+        </script>
 </body>
 </html>
