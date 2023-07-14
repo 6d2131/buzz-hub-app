@@ -17,7 +17,7 @@
                         <a href="/timeline" class="fs-1 mb-0" style="text-decoration: none;">Buzz Hub</a>
                     </div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 14px;">
+                        <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 14px; width: 50px;">
                         投稿
                         </button>
                     </div>
@@ -27,9 +27,9 @@
                     </div>
                     <div class="col">
                         <form action="/timeline" method="get">
-                            <div class="d-grid gap-2 d-flex">
-                                <input type="text" class="form-control ms-auto" name="content" style="height: 31px;"/>
-                                <button type="submit" class="btn btn-primary btn-sm me-auto" style="width: 55px;">
+                            <div class="d-flex">
+                                <input type="text" class="form-control me-2" name="content" style="height: 31px;"/>
+                                <button type="submit" class="btn btn-primary btn-sm" style="min-width: 50px;">
                                 検索
                                 </button>
                             </div>
