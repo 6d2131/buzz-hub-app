@@ -13,9 +13,9 @@ class PostController extends Controller
     public function index(Request $request)
     {
         if ($request->query('content')) {
-            $posts = Post::where('content', 'like', '%' .$request->query('content'). '%')->get();
+            $posts = Post::orderby('created_at', 'desc')->where('content', 'like', '%' .$request->query('content'). '%')->get();
         } else {
-            $posts = Post::all();
+            $posts = Post::orderby('created_at', 'desc')->get()->all();
         } 
         foreach($posts as $post) {
             $user = User::findOrFail($post->user_id);
