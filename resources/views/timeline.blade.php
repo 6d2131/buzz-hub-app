@@ -11,12 +11,12 @@
         <div class="row" style="height: 13%">
             <div class="col">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-3">
                     </div>
-                    <div class="col text-center">
+                    <div class="col-6 text-center">
                         <a href="/timeline" class="fs-1 mb-0" style="text-decoration: none;">Buzz Hub</a>
                     </div>
-                    <div class="col">
+                    <div class="col-3">
                         <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 14px;">
                         投稿
                         </button>
@@ -27,9 +27,9 @@
                     </div>
                     <div class="col">
                         <form action="/timeline" method="get">
-                            <div style="display:inline-flex" class="float-end">
-                                <input type="text" class="form-control" name="content" style="height: 31px;"/>
-                                <button type="submit" class="btn btn-primary ms-1 btn-sm" style="width: 55px;">
+                            <div class="d-grid gap-2 d-flex">
+                                <input type="text" class="form-control ms-auto" name="content" style="height: 31px;"/>
+                                <button type="submit" class="btn btn-primary btn-sm me-auto" style="width: 55px;">
                                 検索
                                 </button>
                             </div>
