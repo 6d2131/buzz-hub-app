@@ -123,17 +123,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script>
         $(function() {
-        var API_KEY = 'd0691dd85a9130f26b631da51d0ec9bd';
-        var city = 'Tokyo';
-        var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',jp&units=metric&APPID=' + API_KEY;
-        $.ajax({
-            url: url,
-            dataType: "json",
-            type: 'GET',
-        })
-        .done(function(data) {
-            const weatherId = data.weather[0].id;
-            // const weatherId = 200
+            const weatherData = @json($response);
+            console.log(weatherData);
+            const weatherId = weatherData['weather'][0]['id'];
+            // console.log(weatherData['weather'][0]['id']);
+            // // const weatherId = 200
             if (weatherId >= 200 && weatherId <= 232) {
                 $('.container').css('background-image', 'url(/image/thunder.png)')
             } else if (weatherId >= 300 && weatherId <= 531) {
@@ -147,10 +141,6 @@
             } else {
 
             }
-            // console.log(data);
-        })
-        .fail(function(data) {
-        });
         });
 
         </script>

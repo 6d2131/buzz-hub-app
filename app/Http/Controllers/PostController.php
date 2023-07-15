@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Http;
 
 class PostController extends Controller
 {
@@ -23,7 +24,13 @@ class PostController extends Controller
             $post->user_name = $user->name;
         }
         $id = Auth::id();
-        return view('timeline', compact('posts', 'id'));
+        
+        
+        $API_KEY = env('WEATHER_API_KEY');
+        $city = 'Tokyo';
+        $response = Http::get('http://api.openweathermap.org/data/2.5/weather?q=' .$city. ',jp&units=metric&APPID='  .$API_KEY);
+        $response = $response->json();
+        return view('timeline', compact('posts', 'id', 'response'));
     }
 
     public function store(Request $request) {
